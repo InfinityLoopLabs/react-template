@@ -17,12 +17,11 @@ module.exports = {
         allowNonEmpty: true,
       },
     ],
-    syncTemplate: [
+    sync: [
       {
         type: "merge-template",
         repo: TEMPLATE_REPO,
         ref: TEMPLATE_REF,
-        allowUnrelatedHistories: true,
       },
     ],
   },

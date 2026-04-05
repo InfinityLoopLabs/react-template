@@ -2,7 +2,6 @@ import { type ReactNode } from 'react'
 import {
   analyticsEngine,
   appSize,
-  auth,
   notify,
   indexeddb,
   popup,
@@ -88,7 +87,6 @@ export default function App() {
         services={[
           analyticsEngine.service,
           appSize.service,
-          auth.service,
           notify.service,
           indexeddb.service(indexedDbInstances),
           popup.service,

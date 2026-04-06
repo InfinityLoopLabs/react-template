@@ -27,7 +27,7 @@ module.exports = {
         when: '!no-store',
         file: 'app/application/store/reducers.ts',
         placeholder: '// Widgets: Начало',
-        line: '  ${name}: ${Name}Reducer,',
+        line: '  ${Name}: ${Name}Reducer,',
       },
       {
         type: 'insert',
@@ -41,7 +41,7 @@ module.exports = {
         type: 'insert',
         when: '!no-store',
         file: 'app/utils/hooks/useAppActions.ts',
-        placeholder: '// insert actions here',
+        placeholder: '// Widgets Actions: Начало',
         line: '      ${Name}: createAction(${Name}Actions),',
       },
     ],
@@ -83,7 +83,7 @@ module.exports = {
         type: 'insert',
         when: '!no-store',
         file: 'app/utils/hooks/useAppActions.ts',
-        placeholder: '// insert actions here',
+        placeholder: '// Services Actions: Начало',
         line: '      ${name}: createAction(${name}Actions),',
       },
     ],
@@ -106,7 +106,7 @@ module.exports = {
       {
         type: 'remove-line',
         file: 'app/application/store/reducers.ts',
-        line: '  ${name}: ${Name}Reducer,',
+        line: '  ${Name}: ${Name}Reducer,',
       },
       {
         type: 'remove',

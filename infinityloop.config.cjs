@@ -152,13 +152,20 @@ module.exports = {
       {
         type: 'replace',
         file: 'package.json',
+        optional: true,
         search: '"name": "sample-frontend"',
         replace: '"name": "${PROJECT_NAME}"',
       },
       {
         type: 'replace',
+        file: 'package.json',
+        search: '"name": "${PROJECT_NAME}"',
+        replace: '"name": "${PROJECT_NAME}"',
+      },
+      {
+        type: 'replace',
         file: '.cli',
-        search: 'PROJECT_NAME=sample-frontend',
+        search: 'PROJECT_NAME=${PROJECT_NAME}',
         replace: 'PROJECT_NAME=${PROJECT_NAME}',
       },
     ],

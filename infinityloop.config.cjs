@@ -144,6 +144,7 @@ module.exports = {
         type: 'merge-template',
         repo: TEMPLATE_REPO,
         ref: TEMPLATE_REF,
+        protectedPaths: ['app/features'],
       },
       {
         type: 'read',

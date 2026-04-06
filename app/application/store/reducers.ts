@@ -15,6 +15,18 @@ import { generatedReducersList } from '@application/store/generated/reducers'
 
 export const reducersList = {
   // Services: Начало
+
+  // Services: Конец
+
+  // Widgets: Начало
+
+  // Widgets: Конец
+
+  // Imported Widgets Reducers: Начало
+
+  // Imported Widgets Reducers: Конец
+
+  // Imported Services Reducers: Начало
   roles: rolesReducer,
   analyticsEngine: analyticsEngineReducer,
   appSize: appSizeReducer,
@@ -25,11 +37,7 @@ export const reducersList = {
   popup: popupReducer,
   router: routerReducer,
   theme: themeReducer,
-  // Services: Конец
-
-  // Widgets: Начало
-
-  // Widgets: Конец
+  // Imported Services Reducers: Конец
 
   // Auto Generated Reducers: Начало
   ...generatedReducersList,

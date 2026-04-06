@@ -20,7 +20,7 @@ module.exports = {
         file: 'app/application/store/reducers.ts',
         placeholder:
           "import { generatedReducersList } from '@application/store/generated/reducers'",
-        line: "import { Reducer as ${Name}Reducer } from '@features/widgets/${Name}'",
+        line: "import { Reducer as ${Name}Reducer } from '@widgets/${Name}'",
       },
       {
         type: 'insert',
@@ -35,7 +35,7 @@ module.exports = {
         file: 'app/utils/hooks/useAppActions.ts',
         placeholder:
           "import type { AppDispatchType } from '@application/store/store'",
-        line: "import { Actions as ${Name}Actions } from '@features/widgets/${Name}'",
+        line: "import { Actions as ${Name}Actions } from '@widgets/${Name}'",
       },
       {
         type: 'insert',
@@ -62,7 +62,7 @@ module.exports = {
         file: 'app/application/store/reducers.ts',
         placeholder:
           "import { generatedReducersList } from '@application/store/generated/reducers'",
-        line: "import { Reducer as ${Name}Reducer } from '@features/services/${name}'",
+        line: "import { Reducer as ${Name}Reducer } from '@services/${name}'",
       },
       {
         type: 'insert',
@@ -77,7 +77,7 @@ module.exports = {
         file: 'app/utils/hooks/useAppActions.ts',
         placeholder:
           "import type { AppDispatchType } from '@application/store/store'",
-        line: "import { Actions as ${name}Actions } from '@features/services/${name}'",
+        line: "import { Actions as ${name}Actions } from '@services/${name}'",
       },
       {
         type: 'insert',
@@ -91,7 +91,7 @@ module.exports = {
       {
         type: 'remove-line',
         file: 'app/utils/hooks/useAppActions.ts',
-        line: "import { Actions as ${Name}Actions } from '@features/widgets/${Name}'",
+        line: "import { Actions as ${Name}Actions } from '@widgets/${Name}'",
       },
       {
         type: 'remove-line',
@@ -101,7 +101,7 @@ module.exports = {
       {
         type: 'remove-line',
         file: 'app/application/store/reducers.ts',
-        line: "import { Reducer as ${Name}Reducer } from '@features/widgets/${Name}'",
+        line: "import { Reducer as ${Name}Reducer } from '@widgets/${Name}'",
       },
       {
         type: 'remove-line',
@@ -117,7 +117,7 @@ module.exports = {
       {
         type: 'remove-line',
         file: 'app/utils/hooks/useAppActions.ts',
-        line: "import { Actions as ${name}Actions } from '@features/services/${name}'",
+        line: "import { Actions as ${name}Actions } from '@services/${name}'",
       },
       {
         type: 'remove-line',
@@ -127,7 +127,7 @@ module.exports = {
       {
         type: 'remove-line',
         file: 'app/application/store/reducers.ts',
-        line: "import { Reducer as ${Name}Reducer } from '@features/services/${name}'",
+        line: "import { Reducer as ${Name}Reducer } from '@services/${name}'",
       },
       {
         type: 'remove-line',

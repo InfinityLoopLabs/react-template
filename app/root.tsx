@@ -1,15 +1,5 @@
 import { type ReactNode } from 'react'
-import {
-  analyticsEngine,
-  appSize,
-  notify,
-  indexeddb,
-  popup,
-  router,
-  theme,
-} from '@infinityloop.labs/frontend-modules'
 import { Flex } from '@infinityloop.labs/ui-kit'
-import { ServiceInjector } from '@infinityloop.labs/utils'
 import {
   isRouteErrorResponse,
   Links,
@@ -19,23 +9,10 @@ import {
   ScrollRestoration,
 } from 'react-router'
 import { Popup } from '@widgets/Popup'
-import {
-  indexedDBInstance,
-  indexedDbTableNames,
-  indexedDbVersion,
-} from '@application/api/indexeddb'
 import { Providers } from '@application/providers'
 import type { Route } from './+types/root'
 
 import './app.css'
-
-const indexedDbInstances = [
-  {
-    instance: indexedDBInstance,
-    tableNames: indexedDbTableNames,
-    version: indexedDbVersion,
-  },
-]
 
 export const links: Route.LinksFunction = () => [
   {
@@ -82,22 +59,7 @@ export default function App() {
 
       <Popup.Widget />
 
-      {/*  Сервисы без авторизации: Начало */}
-      <ServiceInjector
-        services={[
-          analyticsEngine.service,
-          appSize.service,
-          notify.service,
-          indexeddb.service(indexedDbInstances),
-          popup.service,
-          router.service,
-          theme.service,
-        ]}
-      />
-      {/*  Сервисы без авторизации: Конец */}
-
-      {/*  Сервисы с авторизацией: Начало */}
-      {/*  Сервисы с авторизацией: Конец */}
+      {/* ServiceInjector перенесён в Providers */}
     </Flex>
   )
 }

@@ -14,6 +14,30 @@ module.exports = {
         target: "app/features/widgets/$name",
         replace: [{ Sample: "$name" }],
       },
+      {
+        type: "insert",
+        file: "app/application/store/reducers.ts",
+        placeholder: "import { generatedReducersList } from '@application/store/generated/reducers'",
+        line: "import { Reducer as $nameWidgetReducer } from '@features/widgets/$name'",
+      },
+      {
+        type: "insert",
+        file: "app/application/store/reducers.ts",
+        placeholder: "// Widgets: Начало",
+        line: "  $nameLower: $nameWidgetReducer,",
+      },
+      {
+        type: "insert",
+        file: "app/utils/hooks/useAppActions.ts",
+        placeholder: "import type { AppDispatchType } from '@application/store/store'",
+        line: "import { Actions as $nameActions } from '@features/widgets/$name'",
+      },
+      {
+        type: "insert",
+        file: "app/utils/hooks/useAppActions.ts",
+        placeholder: "// insert actions here",
+        line: "      $nameLower: createAction($nameActions),",
+      },
     ],
     addService: [
       {
@@ -25,6 +49,82 @@ module.exports = {
         type: "rename",
         target: "app/features/services/$name",
         replace: [{ Sample: "$name" }],
+      },
+      {
+        type: "insert",
+        file: "app/application/store/reducers.ts",
+        placeholder: "import { generatedReducersList } from '@application/store/generated/reducers'",
+        line: "import { Reducer as $nameServiceReducer } from '@features/services/$name'",
+      },
+      {
+        type: "insert",
+        file: "app/application/store/reducers.ts",
+        placeholder: "// Services: Начало",
+        line: "  $nameLower: $nameServiceReducer,",
+      },
+      {
+        type: "insert",
+        file: "app/utils/hooks/useAppActions.ts",
+        placeholder: "import type { AppDispatchType } from '@application/store/store'",
+        line: "import { Actions as $nameActions } from '@features/services/$name'",
+      },
+      {
+        type: "insert",
+        file: "app/utils/hooks/useAppActions.ts",
+        placeholder: "// insert actions here",
+        line: "      $nameLower: createAction($nameActions),",
+      },
+    ],
+    removeWidget: [
+      {
+        type: "remove-line",
+        file: "app/utils/hooks/useAppActions.ts",
+        line: "import { Actions as $nameActions } from '@features/widgets/$name'",
+      },
+      {
+        type: "remove-line",
+        file: "app/utils/hooks/useAppActions.ts",
+        line: "      $nameLower: createAction($nameActions),",
+      },
+      {
+        type: "remove-line",
+        file: "app/application/store/reducers.ts",
+        line: "import { Reducer as $nameWidgetReducer } from '@features/widgets/$name'",
+      },
+      {
+        type: "remove-line",
+        file: "app/application/store/reducers.ts",
+        line: "  $nameLower: $nameWidgetReducer,",
+      },
+      {
+        type: "remove",
+        target: "app/features/widgets/$name",
+      },
+    ],
+    removeService: [
+      {
+        type: "remove-line",
+        file: "app/utils/hooks/useAppActions.ts",
+        line: "import { Actions as $nameActions } from '@features/services/$name'",
+      },
+      {
+        type: "remove-line",
+        file: "app/utils/hooks/useAppActions.ts",
+        line: "      $nameLower: createAction($nameActions),",
+      },
+      {
+        type: "remove-line",
+        file: "app/application/store/reducers.ts",
+        line: "import { Reducer as $nameServiceReducer } from '@features/services/$name'",
+      },
+      {
+        type: "remove-line",
+        file: "app/application/store/reducers.ts",
+        line: "  $nameLower: $nameServiceReducer,",
+      },
+      {
+        type: "remove",
+        target: "app/features/services/$name",
       },
     ],
     sync: [

@@ -1,15 +1,15 @@
 import { useMemo } from 'react'
 import {
-  useAppSizeActions,
-  useFormsActions,
   analyticsEngineActions,
+  appSizeActions,
   authActions,
+  formsActions,
+  indexeddbActions,
+  notifyActions,
+  popupActions,
   rolesActions,
-  useIndexeddbActions,
-  useNotifyActions,
-  usePopupActions,
-  useRouterActions,
-  useThemeActions,
+  routerActions,
+  themeActions,
 } from '@infinityloop.labs/frontend-modules'
 import { useDispatch } from 'react-redux'
 import { type ActionCreatorsMapObject, bindActionCreators } from 'redux'
@@ -37,30 +37,34 @@ import type { AppDispatchType } from '@application/store/store'
  */
 export const useAppActions = () => {
   const dispatch = useDispatch<AppDispatchType>()
-  const appSize = useAppSizeActions()
-  const forms = useFormsActions()
-  const indexeddb = useIndexeddbActions()
-  const notify = useNotifyActions()
-  const popup = usePopupActions()
-  const router = useRouterActions()
-  const theme = useThemeActions()
+
   const createAction = <T extends ActionCreatorsMapObject>(actions: T) =>
     bindActionCreators(actions, dispatch)
 
+  // Dispatch из react-redux обладает стабильной ссылкой, поэтому безопасно мемоизировать один раз.
   return useMemo(
     () => ({
-      // insert actions here
+      // Services Actions: Начало
+
+      // Services Actions: Конец
+
+      // Widgets Actions: Начало
+
+      // Widgets Actions: Конец
+
+      // Imported Services Actions: Начало
       analyticsEngine: createAction(analyticsEngineActions),
-      appSize,
+      appSize: createAction(appSizeActions),
       auth: createAction(authActions),
-      forms,
-      indexeddb,
-      notify,
-      popup,
+      forms: createAction(formsActions),
+      indexeddb: createAction(indexeddbActions),
+      notify: createAction(notifyActions),
+      popup: createAction(popupActions),
       roles: createAction(rolesActions),
-      router,
-      theme,
+      router: createAction(routerActions),
+      theme: createAction(themeActions),
+      // Imported Services Actions: Конец
     }),
-    [appSize, forms, indexeddb, notify, popup, router, theme],
+    [],
   )
 }

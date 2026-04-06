@@ -144,7 +144,7 @@ module.exports = {
         type: 'merge-template',
         repo: TEMPLATE_REPO,
         ref: TEMPLATE_REF,
-        protectedPaths: ['app/features'],
+        protectedPaths: ['app/features', 'app/application/store/reducers.ts', 'app/utils/hooks/useAppActions.ts'],
       },
       {
         type: 'read',

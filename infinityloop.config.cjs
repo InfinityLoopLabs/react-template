@@ -144,7 +144,11 @@ module.exports = {
         type: 'merge-template',
         repo: TEMPLATE_REPO,
         ref: TEMPLATE_REF,
-        protectedPaths: ['app/features', 'app/application/store/reducers.ts', 'app/utils/hooks/useAppActions.ts'],
+        protectedPaths: [
+          'app/features',
+          'app/application/store/reducers.ts',
+          'app/utils/hooks/useAppActions.ts',
+        ],
       },
       {
         type: 'read',
@@ -156,18 +160,6 @@ module.exports = {
         optional: true,
         search: '"name": "sample-frontend"',
         replace: '"name": "${PROJECT_NAME}"',
-      },
-      {
-        type: 'replace',
-        file: 'package.json',
-        search: '"name": "${PROJECT_NAME}"',
-        replace: '"name": "${PROJECT_NAME}"',
-      },
-      {
-        type: 'replace',
-        file: '.cli',
-        search: 'PROJECT_NAME=${PROJECT_NAME}',
-        replace: 'PROJECT_NAME=${PROJECT_NAME}',
       },
     ],
   },

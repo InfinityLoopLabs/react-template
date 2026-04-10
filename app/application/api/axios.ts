@@ -3,9 +3,9 @@ import { getFromLocalStorage } from '@infinityloop.labs/utils'
 import { Mutex } from 'async-mutex'
 import axios from 'axios'
 import {
+  // CLI: Paste backend urls
   BACKEND_AUTH_URL,
   BACKEND_DRAFTS_URL,
-  // CLI: Paste backend urls
   LocalStorageEnum,
 } from '@constants/local'
 

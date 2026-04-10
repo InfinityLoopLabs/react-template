@@ -228,6 +228,81 @@ module.exports = {
         target: 'app/features/services/${name}',
       },
     ],
+    removeOpenApiConfig: [
+      {
+        type: 'remove-line',
+        file: 'app/constants/app/index.ts',
+        line:
+          'export const BACKEND_${nameScreamingSnake}_URL = import.meta.env.VITE_BACKEND_${nameScreamingSnake}_URL',
+      },
+      {
+        type: 'remove-line',
+        file: 'app/application/api/axios.ts',
+        line: 'BACKEND_${nameScreamingSnake}_URL,',
+      },
+      {
+        type: 'replace',
+        file: 'app/application/api/axios.ts',
+        optional: true,
+        search:
+          "export const ${name}_instance = axios.create({\n  baseURL: BACKEND_${nameScreamingSnake}_URL,\n  headers,\n  // withCredentials: true,\n})",
+        replace: '',
+      },
+      {
+        type: 'replace',
+        file: 'app/application/api/axios.ts',
+        optional: true,
+        search:
+          "${name}_instance.interceptors.request.use(config => {\n  config.headers!.Authorization = 'Bearer ' + getFromLocalStorage(LocalStorageEnum.ACCESS_TOKEN)\n\n  return config\n})",
+        replace: '',
+      },
+      {
+        type: 'replace',
+        file: 'app/application/api/axios.ts',
+        optional: true,
+        search:
+          '${name}_instance.interceptors.response.use(\n  config => config,\n  async error => await waitForTokenRefresh(error, mutex401, ${name}_instance),\n)',
+        replace: '',
+      },
+      {
+        type: 'remove-line',
+        file: 'package.json',
+        line:
+          '"hooks:${name}": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 && npx @rtk-query/codegen-openapi openapi-config-${name}.cjs",',
+      },
+      {
+        type: 'remove-line',
+        file: 'app/application/store/generated/middlewares.ts',
+        line: "import { enhancedApi as ${name} } from '@generated/hooks/${name}'",
+      },
+      {
+        type: 'remove-line',
+        file: 'app/application/store/generated/middlewares.ts',
+        line: '${name}.middleware,',
+      },
+      {
+        type: 'remove-line',
+        file: 'app/application/store/generated/reducers.ts',
+        line: "import { enhancedApi as ${name} } from '@generated/hooks/${name}'",
+      },
+      {
+        type: 'remove-line',
+        file: 'app/application/store/generated/reducers.ts',
+        line: '[${name}.reducerPath]: ${name}.reducer,',
+      },
+      {
+        type: 'remove',
+        target: 'app/features/generated/hooks/${name}.ts',
+      },
+      {
+        type: 'remove',
+        target: 'app/application/api/rtk/instances/${name}.ts',
+      },
+      {
+        type: 'remove',
+        target: 'openapi-config-${name}.cjs',
+      },
+    ],
     sync: [
       {
         type: 'merge-template',

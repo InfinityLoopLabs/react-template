@@ -5,6 +5,7 @@ import axios from 'axios'
 import {
   BACKEND_AUTH_URL,
   BACKEND_DRAFTS_URL,
+  // CLI: Paste backend urls
   LocalStorageEnum,
 } from '@constants/local'
 
@@ -31,6 +32,8 @@ export const drafts_instance = axios.create({
   // withCredentials: true,
 })
 
+// CLI: Paste instances
+
 // Перехватчики запросов: Начало
 auth_instance.interceptors.request.use(config => {
   config.headers!.Authorization = `Bearer ${getFromLocalStorage(LocalStorageEnum.ACCESS_TOKEN)}`
@@ -43,6 +46,7 @@ drafts_instance.interceptors.request.use(config => {
 
   return config
 })
+// CLI: Paste request interceptors
 // Перехватчики запросов: Конец
 
 // Перехватчики ответов: Начало
@@ -55,4 +59,5 @@ auth_instance.interceptors.response.use(
   config => config,
   async error => await waitForTokenRefresh(error, mutex401, auth_instance),
 )
+// CLI: Paste response interceptors
 // Перехватчики ответов: Конец

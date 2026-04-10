@@ -89,6 +89,41 @@ module.exports = {
     ],
     addOpenApiConfig: [
       {
+        type: 'replace',
+        file: 'app/constants/app/index.ts',
+        search: '// CLI: Paste backend env urls',
+        replace:
+          'export const BACKEND_${nameScreamingSnake}_URL = import.meta.env.VITE_BACKEND_${nameScreamingSnake}_URL\n// CLI: Paste backend env urls',
+      },
+      {
+        type: 'replace',
+        file: 'app/application/api/axios.ts',
+        search: '  // CLI: Paste backend urls',
+        replace:
+          '  BACKEND_${nameScreamingSnake}_URL,\n  // CLI: Paste backend urls',
+      },
+      {
+        type: 'replace',
+        file: 'app/application/api/axios.ts',
+        search: '// CLI: Paste instances',
+        replace:
+          '// CLI: Paste instances\nexport const ${name}_instance = axios.create({\n  baseURL: BACKEND_${nameScreamingSnake}_URL,\n  headers,\n  // withCredentials: true,\n})',
+      },
+      {
+        type: 'replace',
+        file: 'app/application/api/axios.ts',
+        search: '// CLI: Paste request interceptors',
+        replace:
+          "// CLI: Paste request interceptors\n${name}_instance.interceptors.request.use(config => {\n  config.headers!.Authorization = 'Bearer ' + getFromLocalStorage(LocalStorageEnum.ACCESS_TOKEN)\n\n  return config\n})",
+      },
+      {
+        type: 'replace',
+        file: 'app/application/api/axios.ts',
+        search: '// CLI: Paste response interceptors',
+        replace:
+          '// CLI: Paste response interceptors\n${name}_instance.interceptors.response.use(\n  config => config,\n  async error => await waitForTokenRefresh(error, mutex401, ${name}_instance),\n)',
+      },
+      {
         type: 'copy',
         from: '_template/openapi-config/app/application/api/rtk/instances/sample.ts',
         to: 'app/application/api/rtk/instances',
@@ -107,6 +142,14 @@ module.exports = {
         type: 'rename',
         target: 'openapi-config-sample.cjs',
         replace: [{ sample: '${name}' }],
+      },
+      {
+        type: 'replace',
+        file: 'package.json',
+        search:
+          '"hooks:drafts": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 && npx @rtk-query/codegen-openapi openapi-config-drafts.cjs",',
+        replace:
+          '"hooks:drafts": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 && npx @rtk-query/codegen-openapi openapi-config-drafts.cjs",\n    "hooks:${name}": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 && npx @rtk-query/codegen-openapi openapi-config-${name}.cjs",',
       },
       {
         type: 'insert',

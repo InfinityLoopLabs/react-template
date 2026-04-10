@@ -9,3 +9,4 @@ export const BASE_URL = import.meta.env.BASE_URL
 
 export const BACKEND_AUTH_URL = import.meta.env.VITE_BACKEND_AUTH_URL
 export const BACKEND_DRAFTS_URL = import.meta.env.VITE_BACKEND_DRAFTS_URL
+// CLI: Paste backend env urls

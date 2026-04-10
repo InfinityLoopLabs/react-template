@@ -3,6 +3,13 @@ const TEMPLATE_REF = 'main'
 
 module.exports = {
   commands: {
+    initCli: [
+      {
+        type: 'copy',
+        from: '.cli.example',
+        to: '.cli',
+      },
+    ],
     addWidget: [
       {
         type: 'copy',

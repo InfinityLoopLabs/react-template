@@ -24,7 +24,7 @@
     "@infinityloop.labs/frontend-modules": "0.0.3",
     "@infinityloop.labs/routing": "^1.0.0",
     "@infinityloop.labs/tailwind-config": "^1.0.17",
-    "@infinityloop.labs/ui-kit": "^0.0.10",
+    "@infinityloop.labs/ui-kit": "^0.0.12",
     "@infinityloop.labs/utils": "^1.0.0",
     "@react-router/node": "^7.13.0",
     "@react-router/serve": "^7.13.0",

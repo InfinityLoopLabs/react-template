@@ -16,7 +16,8 @@
 /blob-report/
 /*.iml
 /.cli
+
 # template placeholders
-_templates/react_template/app/features/services/.gitkeep
-_templates/react_template/app/features/generated/hooks/.gitkeep
-_templates/react_template/app/features/widgets/.gitkeep
+/app/features/services/.gitkeep
+/app/features/generated/hooks/.gitkeep
+/app/features/widgets/.gitkeep

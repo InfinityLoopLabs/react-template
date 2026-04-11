@@ -341,17 +341,6 @@ module.exports = {
         repo: TEMPLATE_REPO,
         ref: TEMPLATE_REF,
       },
-      {
-        type: 'read',
-        file: '.cli',
-      },
-      {
-        type: 'replace',
-        file: 'package.json',
-        optional: true,
-        search: '"name": "sample-frontend"',
-        replace: '"name": "${PROJECT_NAME}"',
-      },
     ],
   },
 }

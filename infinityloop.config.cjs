@@ -3,11 +3,38 @@ const TEMPLATE_REF = 'main'
 
 module.exports = {
   commands: {
+    'init-config': [
+      {
+        type: 'copy',
+        from: '.cli.example',
+        to: '.cli',
+      },
+      {
+        type: 'copy',
+        from: '.env.example',
+        to: '.env.development',
+      },
+      {
+        type: 'copy',
+        from: '.env.example',
+        to: '.env.production',
+      },
+    ],
     initCli: [
       {
         type: 'copy',
         from: '.cli.example',
         to: '.cli',
+      },
+      {
+        type: 'copy',
+        from: '.env.example',
+        to: '.env.development',
+      },
+      {
+        type: 'copy',
+        from: '.env.example',
+        to: '.env.production',
       },
     ],
     addWidget: [

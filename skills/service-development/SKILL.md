@@ -10,12 +10,19 @@ metadata:
 ## When to use
 - Creating a new service (copy `_template/service` into `app/features/services/<serviceName>` and rename Sample placeholders).
 - Updating container/store/structure/lib/constants for an existing service while keeping template rules intact.
+- Removing an existing service and its wiring from store/actions via CLI.
 
 ## Quick start
-0) Scaffold via CLI: `new service name` (service name is lowercase; CLI normalizes). Add `--ns` if the service does **not** need a Redux slice (no store injection).
+0) Scaffold via CLI:
+   - `ill addService auth`
+   - or `ill addService --name auth`
+   - Add `--no-store` if the service does **not** need a Redux slice/store wiring.
 1) Keep export surface the same (`index.tsx` re-exports store/constants/lib and exposes `{ service: useContainer }` from a lowercase export).
 2) Replace placeholder DTO/UI types, schemas, and data models; move every magic number/string into `constants/` and re-export via `constants/index.ts`.
 3) If the service is global (app-wide side effects), register it in the root ServiceInjector services list.
+4) Remove via CLI when needed:
+   - `ill removeService auth`
+   - or `ill removeService --name auth`
 
 ## File roles and guardrails
 - **container (`container/index.ts`)**
@@ -58,15 +65,15 @@ metadata:
   - `name.ts` builds a service name from `NAME_FROM_PACKAGE_JSON` (service naming, not widget naming).
 
 ## Store and actions wiring
-If you scaffolded without `--ns`, the CLI will auto-inject:
+If you scaffolded without `--no-store`, the CLI will auto-inject:
 - Reducer import + reducer key into `app/application/store/reducers.ts` under `// Services: Начало`
 - Actions binding into `app/utils/hooks/useAppActions.ts`
 
-If you scaffolded with `--ns`:
+If you scaffolded with `--no-store`:
 - CLI will NOT inject reducer/hooks. Keep the service free of Redux usage (or wire it manually if you later add a slice).
 
 ## Do not confuse templates
-- repo root `_template/service/*`: scaffolding templates used by the `new` CLI
+- repo root `_template/service/*`: scaffolding templates used by `ill addService`
 - widget-local `templates/*`: UI decomposition pieces used by widgets (not applicable to services)
 
 ## Final checks

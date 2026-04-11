@@ -10,14 +10,21 @@ metadata:
 ## When to use
 - Creating a new widget (copy `_template/widget` into `app/features/widgets/<WidgetName>` and rename Sample placeholders).
 - Updating container/UI/lib/store/constants for an existing widget while keeping template rules intact.
+- Removing an existing widget and its wiring from store/actions via CLI.
 
 ## Quick start
-0) Scaffold via CLI: `new widget Name` (Name starts with capital). Add `--ns` if the widget does **not** need Redux slice (common case).
+0) Scaffold via CLI:
+   - `ill addWidget Header`
+   - or `ill addWidget --name Header`
+   - Add `--no-store` if the widget does **not** need Redux slice/store wiring.
 1) Copy the template folder, rename files/types/components from Sample to the widget name, and set `constants/name.ts` to include the widget identifier (built on `NAME_FROM_PACKAGE_JSON`).
 2) Keep export surface the same (`index.tsx` re-exports store/constants/lib and exposes `Container.displayName = name`); register the reducer where the feature is consumed if the widget needs store state.
 3) Replace placeholder DTO/UI types, schemas, and data-testids; move every magic number/string into `constants/` and re-export via `constants/index.ts`.
-4) Do not confuse:
-   - repo root `_template/*`: scaffolding templates used by the `new` CLI
+4) Remove via CLI when needed:
+   - `ill removeWidget Header`
+   - or `ill removeWidget --name Header`
+5) Do not confuse:
+   - repo root `_template/*`: scaffolding templates used by `ill addWidget`/`ill addService`
    - widget-local `templates/*`: UI decomposition pieces used by the widget itself (still pure-render, no hooks)
 
 ## File roles and guardrails

@@ -3,15 +3,15 @@ import { clsx } from '@infinityloop.labs/utils'
 
 export function meta() {
   return [
-    { title: 'New React Router App' },
+    { title: 'SamplePage' },
     {
       name: 'description',
-      content: 'Welcome to React Router!',
+      content: 'Route sample-page',
     },
   ]
 }
 
-export default function Home() {
+export default function SamplePage() {
   return (
     <Flex column className={clsx('w-full h-screen')}>
       <main />

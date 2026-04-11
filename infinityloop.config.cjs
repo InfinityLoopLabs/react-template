@@ -121,6 +121,64 @@ module.exports = {
         line: '      ${name}: createAction(${name}Actions),',
       },
     ],
+    addPage: [
+      {
+        type: 'copy',
+        from: '_template/page/sample-page.tsx',
+        to: 'app/routes',
+      },
+      {
+        type: 'rename',
+        target: 'app/routes/sample-page.tsx',
+        replace: [
+          { 'Sample Page': '${namePascal}' },
+          { SamplePage: '${namePascal}' },
+          { 'sample-page': '${nameKebab}' },
+        ],
+      },
+      {
+        type: 'replace',
+        optional: true,
+        file: 'app/routes.ts',
+        search: "import { type RouteConfig, index } from '@react-router/dev/routes'",
+        replace:
+          "import { type RouteConfig, index, route } from '@react-router/dev/routes'",
+      },
+      {
+        type: 'replace',
+        optional: true,
+        file: 'app/routes.ts',
+        search: "export default [index('routes/home.tsx')] satisfies RouteConfig",
+        replace:
+          "export default [\n  index('routes/home.tsx'),\n  // CLI: Paste page routes\n] satisfies RouteConfig",
+      },
+      {
+        type: 'insert',
+        file: 'app/routes.ts',
+        placeholder: '// CLI: Paste page routes',
+        line: "  route('${nameKebab}', 'routes/${nameKebab}.tsx'),",
+      },
+    ],
+    removePage: [
+      {
+        type: 'remove-line',
+        file: 'app/routes.ts',
+        line: "route('${nameKebab}', 'routes/${nameKebab}.tsx'),",
+      },
+      {
+        type: 'replace',
+        optional: true,
+        file: 'app/routes.ts',
+        search:
+          "import { type RouteConfig, index, route } from '@react-router/dev/routes'\n\nexport default [\n  index('routes/home.tsx'),\n  // CLI: Paste page routes\n] satisfies RouteConfig",
+        replace:
+          "import { type RouteConfig, index } from '@react-router/dev/routes'\n\nexport default [\n  index('routes/home.tsx'),\n  // CLI: Paste page routes\n] satisfies RouteConfig",
+      },
+      {
+        type: 'remove',
+        target: 'app/routes/${nameKebab}.tsx',
+      },
+    ],
     addOpenApiConfig: [
       {
         type: 'replace',

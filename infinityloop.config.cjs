@@ -266,8 +266,7 @@ module.exports = {
       {
         type: 'remove-line',
         file: 'app/constants/app/index.ts',
-        line:
-          'export const BACKEND_${nameScreamingSnake}_URL = import.meta.env.VITE_BACKEND_${nameScreamingSnake}_URL',
+        line: 'export const BACKEND_${nameScreamingSnake}_URL = import.meta.env.VITE_BACKEND_${nameScreamingSnake}_URL',
       },
       {
         type: 'remove-line',
@@ -279,7 +278,7 @@ module.exports = {
         file: 'app/application/api/axios.ts',
         optional: true,
         search:
-          "export const ${name}_instance = axios.create({\n  baseURL: BACKEND_${nameScreamingSnake}_URL,\n  headers,\n  // withCredentials: true,\n})",
+          'export const ${name}_instance = axios.create({\n  baseURL: BACKEND_${nameScreamingSnake}_URL,\n  headers,\n  // withCredentials: true,\n})',
         replace: '',
       },
       {
@@ -301,8 +300,7 @@ module.exports = {
       {
         type: 'remove-line',
         file: 'package.json',
-        line:
-          '"hooks:${name}": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 && npx @rtk-query/codegen-openapi openapi-config-${name}.cjs",',
+        line: '"hooks:${name}": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 && npx @rtk-query/codegen-openapi openapi-config-${name}.cjs",',
       },
       {
         type: 'remove-line',
@@ -342,11 +340,6 @@ module.exports = {
         type: 'merge-template',
         repo: TEMPLATE_REPO,
         ref: TEMPLATE_REF,
-        protectedPaths: [
-          'app/features',
-          'app/application/store/reducers.ts',
-          'app/utils/hooks/useAppActions.ts',
-        ],
       },
       {
         type: 'read',
